@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmoothVoiceRecorder">
         <activity
-            android:name=".MainActivity"
+            android:name=".voicerecorder.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
