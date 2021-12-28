@@ -4,4 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".voicerecorder.ui.activities.MainActivity"/>
+    tools:context=".voicerecorder.ui.activities.MainActivity">
+
+    <fragment
+        android:id="@+id/fragment"
+         android:layout_height="0dp"
+         android:layout_width="match_parent"
+         app:defaultNavHost="true"
+         app:navGraph="@navigation/nav_graph"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
