@@ -1,11 +1,7 @@
 package com.steve.recorder.voicerecorder.ui.main
 
 import android.media.MediaRecorder
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.steve.recorder.voicerecorder.data.Record
 import com.steve.recorder.voicerecorder.data.RecordRepository
 import com.steve.recorder.voicerecorder.utils.RecordState
@@ -14,12 +10,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RecordViewModel @Inject constructor(val repository: RecordRepository) :
-    ViewModel(){
+class RecordViewModel
+@Inject
+constructor(private val repository: RecordRepository) :
+    ViewModel() {
 
     private val _recordState: MutableLiveData<RecordState<Record>> = MutableLiveData()
 
-    val recordState: LiveData<RecordState<Record>> get() =_recordState
+    val recordState: LiveData<RecordState<Record>> get() = _recordState
 
     private var mediaRecorder: MediaRecorder? = null
 
@@ -55,7 +53,10 @@ class RecordViewModel @Inject constructor(val repository: RecordRepository) :
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+
     }
+
 
     fun stopRecording(title: String?) {
 
@@ -85,4 +86,6 @@ class RecordViewModel @Inject constructor(val repository: RecordRepository) :
         }
         return record
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.steve.recorder.voicerecorder.ui.main
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.steve.recorder.R
 import com.steve.recorder.databinding.FragmentMainBinding
 import com.steve.recorder.voicerecorder.data.Record
@@ -22,46 +24,51 @@ import java.util.*
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
-
     private val viewModel: RecordViewModel by lazy {
         ViewModelProvider(this).get(RecordViewModel::class.java)
     }
-    private var isRecording: Boolean = false
-    private var title: String? = null
-    private var fileName: String? = null
 
+    private var isRecording: Boolean = false
+    private lateinit var binding: FragmentMainBinding
+    private var title: String? = null
+    private var filename: String? = null
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
         subscribe()
+        setClickListeners()
 
         return binding.root
     }
 
     private fun subscribe() {
-        viewModel.recordState.observe(viewLifecycleOwner, {recordState ->
+        viewModel.recordState.observe(viewLifecycleOwner, { recordState ->
             when (recordState) {
                 is RecordState.Recording -> {
+
+                    //disable the edit text
                     isRecording = true
-                    switchButtonDrawable(isRecording)
+                    switchButtonDrawble(isRecording)
                 }
                 is RecordState.Done<Record> -> {
                     isRecording = false
-                    switchButtonDrawable(isRecording)
+                    switchButtonDrawble(isRecording)
 
-                    context?.toast("File saved successfully")
+                    context?.toast("file Saved!")
                 }
-                is RecordState.Error -> {}
+                is RecordState.Error -> {
+                    // request focus and chronometer 0
+                }
             }
+
         })
     }
 
-    private fun switchButtonDrawable(recording: Boolean) {
+    private fun switchButtonDrawble(recording: Boolean) {
+
         if (recording) {
             binding.recordBtn.setImageDrawable(
                 activity?.let {
@@ -75,7 +82,42 @@ class MainFragment : Fragment() {
                 }
             )
         }
+
     }
+
+    private fun setClickListeners() {
+
+
+        binding.list.setOnClickListener {
+
+            if (isRecording) {
+                showAlertDialog()
+            } else {
+                findNavController().navigate(R.id.action_mainFragment_to_recordFragment)
+            }
+        }
+
+        binding.micCard.setOnClickListener { setRecordBtnClickListener() }
+    }
+
+    private fun showAlertDialog() {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setPositiveButton(
+            "Ok"
+        ) { _, _ ->
+
+            stopRecording()
+            findNavController().navigate(R.id.action_mainFragment_to_recordFragment)
+            isRecording = false
+        }
+        dialogBuilder.setNegativeButton("Cancel", null)
+        val dialog = dialogBuilder.create()
+        dialog.setTitle("Audio still recording")
+        dialog.setMessage("Are you sure you want to stop recording?")
+        dialog.show()
+
+    }
+
 
     private fun setRecordBtnClickListener() {
         if (isRecording) {
@@ -83,6 +125,25 @@ class MainFragment : Fragment() {
         } else {
             startRecording()
         }
+    }
+
+
+    private fun stopRecording() {
+        binding.timer.stop()
+        binding.audioNameEt.text?.clear()
+        binding.audioNameEt.isEnabled = true
+
+
+        filename = if (title == null || title.isNullOrEmpty()) {
+            filename
+        } else {
+            title + ".3gp"
+        }
+
+
+        viewModel.stopRecording(filename)
+        binding.headingText.text = "Recording stopped, file saved"
+
     }
 
     private fun startRecording() {
@@ -96,7 +157,7 @@ class MainFragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_hh_ss", Locale.ENGLISH)
         title = binding.audioNameEt.text.toString()
 
-        fileName = if (title == null || title.isNullOrEmpty()) {
+        filename = if (title == null || title.isNullOrEmpty()) {
             "filename" + formatter.format(Date()) + ".3gp"
         } else {
             title + ".3gp"
@@ -105,37 +166,21 @@ class MainFragment : Fragment() {
 
 
 
-        binding.headingText.text = "Recording started for file: ${fileName}"
+        binding.headingText.text = "Recording started for file: ${filename}"
 
         if (filepath != null) {
-            viewModel.startRecording(fileName, filepath)
+            viewModel.startRecording(filename, filepath)
         } else {
             context?.toast("filepath Error")
         }
 
     }
 
-    private fun stopRecording() {
-        binding.timer.stop()
-        binding.audioNameEt.text?.clear()
-        binding.audioNameEt.isEnabled = true
-
-
-        fileName = if (title == null || title.isNullOrEmpty()) {
-            fileName
-        } else {
-            title + ".3gp"
-        }
-
-
-        viewModel.stopRecording(fileName)
-        binding.headingText.text = "Recording stopped, file saved"
-
-    }
 
     override fun onStart() {
         super.onStart()
         (activity as MainActivity).setFullScreenWithBtmNav()
+
     }
 
     override fun onStop() {
