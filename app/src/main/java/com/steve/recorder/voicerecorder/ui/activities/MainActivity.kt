@@ -1,6 +1,5 @@
 package com.steve.recorder.voicerecorder.ui.activities
 
-import android.Manifest
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.pm.PackageManager
@@ -13,7 +12,9 @@ import androidx.navigation.ui.NavigationUI
 import com.steve.recorder.R
 import com.steve.recorder.databinding.ActivityMainBinding
 import com.steve.recorder.voicerecorder.utils.setFullScreenForNotch
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val navController: NavController by lazy {
