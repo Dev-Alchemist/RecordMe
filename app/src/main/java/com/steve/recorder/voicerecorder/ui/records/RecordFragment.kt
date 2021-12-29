@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.steve.recorder.databinding.FragmentRecordBinding
 import com.steve.recorder.voicerecorder.adapters.VoiceRecordAdapter
+import com.steve.recorder.voicerecorder.utils.gone
+import com.steve.recorder.voicerecorder.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File

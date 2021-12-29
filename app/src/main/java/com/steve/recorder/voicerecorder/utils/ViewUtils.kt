@@ -54,3 +54,12 @@ fun Activity.setFullScreenForNotch() {
             WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
     }
 }
+
+fun View.visible() {
+    this.visibility = View.VISIBLE
+}
+
+
+fun View.gone() {
+    this.visibility = View.GONE
+}
