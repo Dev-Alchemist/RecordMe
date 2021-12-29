@@ -1,7 +1,9 @@
 package com.steve.recorder.voicerecorder.data
 
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class RecordRepository @Inject constructor(val recordDao: RecordDao) {
 
     suspend fun insertRecord(record: Record) = recordDao.insertRecords(record)
