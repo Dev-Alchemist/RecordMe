@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SmoothVoiceRecorder</string>
+    <string name="mic_text">Press the mic button to start recording</string>
 </resources>

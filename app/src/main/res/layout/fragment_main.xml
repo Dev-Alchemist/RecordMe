@@ -22,7 +22,7 @@
         android:layout_marginStart="@dimen/_32sdp"
         android:layout_marginEnd="@dimen/_32sdp"
         android:lineHeight="@dimen/_22sdp"
-        android:text="Press the mic button to statrt recording"
+        android:text="@string/mic_text"
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:textSize="20sp"
