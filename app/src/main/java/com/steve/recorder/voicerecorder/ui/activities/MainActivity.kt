@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.steve.recorder.R
 import com.steve.recorder.databinding.ActivityMainBinding
+import com.steve.recorder.voicerecorder.utils.setFullScreenForNotch
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setFullScreenForNotch()
     }
 
     override fun onSupportNavigateUp(): Boolean {

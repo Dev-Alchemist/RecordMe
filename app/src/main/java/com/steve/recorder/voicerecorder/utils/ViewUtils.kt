@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.view.WindowManager
 
 fun Activity.hideSystemUI() {
     if (isAboveR()) {
@@ -20,5 +21,13 @@ fun Activity.hideSystemUI() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+    }
+}
+
+fun Activity.setFullScreenForNotch() {
+    this.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    if (isAboveP()) {
+        this.window.attributes.layoutInDisplayCutoutMode =
+            WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
     }
 }

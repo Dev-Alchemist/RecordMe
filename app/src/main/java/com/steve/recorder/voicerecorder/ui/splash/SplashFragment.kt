@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.steve.recorder.R
 import com.steve.recorder.databinding.FragmentSplashBinding
+import com.steve.recorder.voicerecorder.ui.activities.MainActivity
 import com.steve.recorder.voicerecorder.utils.CoroutinesHelper
+import com.steve.recorder.voicerecorder.utils.hideSystemUI
 
 class SplashFragment: Fragment(){
 
@@ -30,5 +32,10 @@ class SplashFragment: Fragment(){
         CoroutinesHelper.delayWithMain(3000L) {
             findNavController().navigate(R.id.action_splashFragment_to_mainFragment)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).hideSystemUI()
     }
 }
