@@ -12,8 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecordViewModel
 @Inject
-constructor(private val repository: RecordRepository) :
-    ViewModel() {
+constructor(private val repository: RecordRepository) : ViewModel() {
 
     private val _recordState: MutableLiveData<RecordState<Record>> = MutableLiveData()
 

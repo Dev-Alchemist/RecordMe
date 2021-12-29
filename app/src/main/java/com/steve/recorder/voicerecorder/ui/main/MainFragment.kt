@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.steve.recorder.R
@@ -24,9 +25,10 @@ import java.util.*
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val viewModel: RecordViewModel by lazy {
-        ViewModelProvider(this).get(RecordViewModel::class.java)
-    }
+//    private val viewModel: RecordViewModel by lazy {
+//        ViewModelProvider(this).get(RecordViewModel::class.java)
+//    }
+    private val viewModel by viewModels<RecordViewModel>()
 
     private var isRecording: Boolean = false
     private lateinit var binding: FragmentMainBinding
