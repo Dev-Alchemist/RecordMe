@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.steve.recorder.R
 import com.steve.recorder.databinding.FragmentMainBinding
 import com.steve.recorder.voicerecorder.data.Record
+import com.steve.recorder.voicerecorder.ui.activities.MainActivity
 import com.steve.recorder.voicerecorder.utils.RecordState
+import com.steve.recorder.voicerecorder.utils.setFullScreenWithBtmNav
 import com.steve.recorder.voicerecorder.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -75,6 +77,14 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun setRecordBtnClickListener() {
+        if (isRecording) {
+            stopRecording()
+        } else {
+            startRecording()
+        }
+    }
+
     private fun startRecording() {
 
         binding.timer.base = SystemClock.elapsedRealtime()
@@ -121,6 +131,11 @@ class MainFragment : Fragment() {
         viewModel.stopRecording(fileName)
         binding.headingText.text = "Recording stopped, file saved"
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).setFullScreenWithBtmNav()
     }
 
     override fun onStop() {
