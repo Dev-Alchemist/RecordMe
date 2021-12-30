@@ -129,19 +129,6 @@ ViewModel() {
     }
 
 
-    fun playAgain() {
-
-        recordList.value?.let { list ->
-            if (!list.isNullOrEmpty()) {
-                if (currentPosition != -1) {
-                    playRecord(list[currentPosition].filePath, currentPosition)
-                } else {
-                    playNext()
-                }
-            }
-        }
-    }
-
     fun getTitle() = recordList.value?.get(currentPosition)?.title
 
     private fun stopMediaPlayer() {
