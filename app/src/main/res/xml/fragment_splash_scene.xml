@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene
+<MotionScene 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
@@ -9,33 +9,33 @@
         motion:duration="2000"
         motion:autoTransition="animateToEnd"
         motion:motionInterpolator="easeInOut">
-        <KeyFrameSet>
-            <KeyAttribute
-                motion:motionTarget="@+id/imageView"
-                motion:framePosition="20"
-                android:scaleX="0.8"
-                android:scaleY="0.8" />
-            <KeyAttribute
-                motion:motionTarget="@+id/imageView"
-                motion:framePosition="0"
-                android:scaleX="0.5"
-                android:scaleY="0.5" />
-            <KeyAttribute
-                motion:motionTarget="@+id/imageView"
-                motion:framePosition="40"
-                android:scaleX="0.5"
-                android:scaleY="0.5" />
-            <KeyAttribute
-                motion:motionTarget="@+id/imageView"
-                motion:framePosition="100"
-                android:scaleX="0.5"
-                android:scaleY="0.5" />
-            <KeyAttribute
-                motion:motionTarget="@+id/imageView"
-                motion:framePosition="60"
-                android:scaleX="0.8"
-                android:scaleY="0.8" />
-        </KeyFrameSet>
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="20"
+               android:scaleX="0.8"
+               android:scaleY="0.8" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="0"
+               android:scaleX="0.5"
+               android:scaleY="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="40"
+               android:scaleX="0.5"
+               android:scaleY="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="100"
+               android:scaleX="0.5"
+               android:scaleY="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView"
+               motion:framePosition="60"
+               android:scaleX="0.8"
+               android:scaleY="0.8" />
+       </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -43,5 +43,4 @@
 
     <ConstraintSet android:id="@+id/end">
     </ConstraintSet>
-
 </MotionScene>

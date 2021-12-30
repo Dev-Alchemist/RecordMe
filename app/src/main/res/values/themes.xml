@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SmoothVoiceRecorder" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.VoiceRecorder" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
@@ -14,11 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+
     <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeBottomLeft">@dimen/_18sdp</item>
         <item name="cornerSizeBottomRight">@dimen/_18sdp</item>
 
     </style>
+
 
 </resources>

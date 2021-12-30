@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".voicerecorder.ui.activities.MainActivity">
+    tools:context=".ui.activities.MainActivity">
+
 
     <fragment
         android:id="@+id/fragment"
@@ -17,5 +18,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

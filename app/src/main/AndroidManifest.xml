@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.steve.recorder">
+    package="com.voice.voicerecorder">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,13 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmoothVoiceRecorder"
+        android:theme="@style/Theme.VoiceRecorder"
         android:requestLegacyExternalStorage="true"
-        android:name=".voicerecorder.MyApplication"
+        android:name=".MyApplication"
         >
-        <activity
-            android:name=".voicerecorder.ui.activities.MainActivity"
-            android:exported="true">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
