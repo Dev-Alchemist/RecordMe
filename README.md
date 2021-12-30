@@ -8,3 +8,8 @@
 -  Made Using : Kotlin, Navigation Components, Room Database (for caching), Lifescycle, Dependency Injection: HILT, Kotlin Coroutines, Android Material Components
 
 
+## Screenshots
+
+<img src="/ss/diktafon4.png" />
+
+
